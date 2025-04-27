@@ -1,0 +1,47 @@
+/* Define Cascadia Code font - assuming it's locally installed or web-accessible */
+@font-face {
+    font-family: 'Cascadia Code';
+    /* Specify paths to font files if self-hosting, otherwise rely on system installation */
+    /* Example:
+    src: local('Cascadia Code'),
+         url('path/to/CascadiaCode.woff2') format('woff2'),
+         url('path/to/CascadiaCode.woff') format('woff');
+    */
+    /* If using a CDN like Google Fonts, replace @font-face with @import */
+}
+
+body {
+    /* Change font-family to Garamond with serif fallbacks */
+    font-family: Garamond, Georgia, serif; /* Fallback fonts */
+    background-color: #ffffff;
+    color: #000000;
+    line-height: 1.4;
+    padding: 0 10px;
+    margin: 50px auto; /* Remove default body margin */
+    font-size: 16px;
+    /* Remove body padding, rely on container */
+}
+
+.container {
+    /* Adjust max-width to match the reference image */
+    max-width: 600px; 
+    /* Increase top/bottom margin for more vertical space, keep auto for horizontal centering */
+    margin: 60px auto; 
+    padding: 0 20px; /* Keep horizontal padding for smaller screens */
+}
+
+h1 {
+    font-size: 2em; /* Larger heading */
+    margin-bottom: 1em;
+}
+
+
+
+a {
+    color: #000000;
+    text-decoration: underline;
+}
+
+a:hover {
+    text-decoration: none;
+} 
