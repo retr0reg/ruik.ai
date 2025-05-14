@@ -47,4 +47,14 @@ a:hover {
 code {
     font-size: 13px;
     font-family: 'Cascadia Code', monospace;
+}
+
+.mobile-break {
+  display: inline;
+}
+
+@media (max-width: 600px) {
+  .mobile-break {
+    display: block;
+  }
 } 
