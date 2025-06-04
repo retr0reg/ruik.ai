@@ -35,6 +35,26 @@ h1 {
     margin-bottom: 1em;
 }
 
+.social-icons {
+    margin: -0.7em 0 1.2em 0; /* Reduced margins for more compact look */
+    display: flex;
+    gap: 8px; /* Reduced gap from 15px to 10px */
+}
+
+.social-icons a {
+    color: #666666; /* Subtle gray color */
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.social-icons a:hover {
+    color: #000000; /* Black on hover */
+}
+
+.social-icons svg {
+    display: block; /* Remove any inline spacing */
+}
+
 a {
     color: #000000;
     text-decoration: underline;
