@@ -1,0 +1,27 @@
+/* 整体字体变小，行高压缩 */
+body, table.fancyIndexBody * {
+    font-size: 0.8em !important;
+    line-height: 1.1 !important;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* 表格去边框，单元格内边距收紧 */
+  table.fancyIndexBody {
+    border-collapse: collapse !important;
+  }
+  table.fancyIndexBody td {
+    padding: 2px 4px !important;
+  }
+  
+  /* 缩小图标尺寸 */
+  table.fancyIndexBody img {
+    width: 16px !important;
+    height: 16px !important;
+  }
+  
+  /* 调整链接文字换行，避免太宽 */
+  table.fancyIndexBody a {
+    word-break: break-all;
+    white-space: normal;
+  }

