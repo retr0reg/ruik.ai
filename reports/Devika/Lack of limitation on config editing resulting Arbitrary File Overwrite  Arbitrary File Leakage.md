@@ -108,7 +108,6 @@ def exploit(
         "GROQ": "<YOUR_GROQ_API_KEY>",
         "MISTRAL": "<YOUR_MISTRAL_API_KEY>",
         "NETLIFY": "<YOUR_NETLIFY_API_KEY>",
-        "OPENAI": "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"
     },
     "LOGGING": {
         "LOG_PROMPTS": "false",

