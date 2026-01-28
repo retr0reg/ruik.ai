@@ -65,6 +65,19 @@ a:hover {
     text-decoration: none;
 }
 
+ul {
+    margin: 0.2em 0 0.6em 1.1em;
+    padding-left: 0.9em;
+}
+
+ul ul {
+    margin-top: 0.2em;
+}
+
+li {
+    margin: 0.15em 0;
+}
+
 code {
     font-size: 13px;
     font-family: 'Cascadia Code', monospace;
