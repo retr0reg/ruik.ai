@@ -96,6 +96,22 @@ h1 {
     font-style: italic;
 }
 
+.blog-footer-note {
+    margin-top: 2.2em;
+    text-align: center;
+    font-size: 0.85em;
+    color: var(--text-muted);
+}
+
+.blog-footer-link {
+    color: var(--text-primary);
+    text-decoration: underline;
+}
+
+.blog-footer-link:hover {
+    text-decoration: none;
+}
+
 p {
     margin-bottom: 1em;
 }

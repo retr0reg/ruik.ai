@@ -16,6 +16,10 @@ function escapeHtml(text: string): string {
     .replace(/'/g, "&#039;");
 }
 
+function isImageFilename(text: string): boolean {
+  return /\.(png|jpe?g|gif|webp|svg)$/i.test(text.trim());
+}
+
 marked.use({
   renderer: {
     code(token: Tokens.Code): string {
@@ -42,7 +46,9 @@ marked.use({
     image(token: Tokens.Image): string {
       const { href, title, text } = token;
       const titleAttr = title ? ` title="${escapeHtml(title)}"` : "";
-      return `<figure class="writeup-figure"><img src="${href}" alt="${escapeHtml(text)}"${titleAttr} loading="lazy"><figcaption>${escapeHtml(text) || ""}</figcaption></figure>`;
+      const caption =
+        text && !isImageFilename(text) ? `<figcaption>${escapeHtml(text)}</figcaption>` : "";
+      return `<figure class="writeup-figure"><img src="${href}" alt="${escapeHtml(text)}"${titleAttr} loading="lazy">${caption}</figure>`;
     },
   },
 });
@@ -52,7 +58,7 @@ export function parseMarkdown(markdown: string): string {
   let processed = markdown.replace(
     /!\[\[([^\]]+)\]\]/g,
     (_, filename: string) => {
-      return `<figure class="writeup-figure"><img src="/mds/${filename}" alt="${filename}" loading="lazy"><figcaption>${filename}</figcaption></figure>`;
+      return `<figure class="writeup-figure"><img src="/mds/${filename}" alt="${filename}" loading="lazy"></figure>`;
     }
   );
 

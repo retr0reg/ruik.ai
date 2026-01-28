@@ -37,6 +37,11 @@ export default async function BlogPage() {
         )}
       </div>
 
+      <div className="blog-footer-note">
+        for my bugs storytell<br />
+        visit <a href="https://retr0.blog" className="blog-footer-link">retr0.blog</a>
+      </div>
+
       <footer className="footer-nav">
         <Link href="/" className="nav-item">home</Link>
         <span className="nav-item active">blog</span>
