@@ -114,9 +114,19 @@ export interface PageContent {
 
 // Download an image from URL and save it locally, returning the local path
 async function cacheImage(url: string): Promise<string> {
+  // Vercel serverless (and similar) can't write to /var/task/public
+  if (process.env.VERCEL) {
+    return url;
+  }
+
   // Ensure cache directory exists
-  if (!fs.existsSync(IMAGE_CACHE_DIR)) {
-    fs.mkdirSync(IMAGE_CACHE_DIR, { recursive: true });
+  try {
+    if (!fs.existsSync(IMAGE_CACHE_DIR)) {
+      fs.mkdirSync(IMAGE_CACHE_DIR, { recursive: true });
+    }
+  } catch (error) {
+    console.error("Failed to create image cache dir:", error);
+    return url;
   }
 
   // Generate a stable filename from the URL hash
