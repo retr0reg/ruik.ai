@@ -24,25 +24,28 @@ export default function Home() {
       </div>
 
       <p>
-        Hey, I am Ruikai Peng. I am a 16 years-old <span className="mobile-break"></span> researcher &amp; nerd at innermost security <i style={{ fontSize: "smaller" }}>(binary, memory)</i> and machine learning. I am also founding my company, Pwno, focused on making AIs find &amp; exploit deep-rooted security bugs. <br/>I&apos;ve been doing this since 11.
+        Hey, I am Ruikai Peng. <br/> I am a 16 years-old <span className="mobile-break"></span> working on the security of the lowest parts of computer systems. <br/><i>(I&apos;ve been doing this since 11.)</i>
       </p>
+
+      <blockquote className="quote-block">
+        here is very little what I do, <br/>
+        book an actual <a href="https://calendar.app.google/cRjnJVTxNfZT5erN7">zoom call</a> if you want actual to know me. <br/>
+        we can talk about snowboarding or musicals if you want<br/>
+      </blockquote>
 
       <p>things about me:</p>
 
       <ul>
-        <li><a href="https://www.bugcrowd.com/blog/hacker-spotlight-ruikai-peng/">spotlight</a></li>
         <li>previous <a href="/projs/">bugs</a> I found</li>
         <li><a href="https://pwno.ai">Pwno</a>, founder
           <ul>
-            <li>r&amp;d, infra, product (everything but design)</li>
-            <li><a href="https://x.com/pwnoio/status/2001019752865739059">peek of pwno: ffmpeg</a></li>
-            <li><a href="https://pwno.ai/blog/prompt-to-heap-overflow">prompt to heap overflow</a></li>
+            <li>We build AIs for real-world <a href="https://pwno.io">security problems</a> <br/> at the innermost systems that billions used daily</li>
           </ul>
         </li>
-        <li><a href="https://retr0.blog/">retr0.blog</a>, storytell of my low-level exploitation
+        <li><a href="https://retr0.blog/">retr0.blog</a>, storytell of how I exploit bugs from the lowest part of computers
           <ul>
-            <li><a href="https://news.ycombinator.com/item?id=43451935">exploiting a heap overflow in <code>llama.cpp</code></a></li>
-            <div className="footnote">^^^ once yc hackernews top 3</div>
+            <li className="highlight-item"><a href="https://news.ycombinator.com/item?id=43451935">exploiting a heap overflow in <code>llama.cpp</code></a></li>
+            {/* <div className="footnote">^^^ once yc hackernews top 3</div> */}
             <li><a href="https://retr0.blog/blog/evernote-rce">creating a one-click rce in <code>evernote</code></a></li>
             <li><a href="https://retr0.blog/blog/tenda-ac8-rop">rop&apos;ing a <code>tenda</code> router</a></li>
             <li><a href="https://retr0.blog/blog">...</a></li>
@@ -62,7 +65,11 @@ export default function Home() {
           <ul><li>I talked about how I use a super fun but complex way to RCE LLama.cpp via a little heap-overflow in tensor processing.</li></ul>
         </li>
         <li>Youngest member of <a href="https://www-qbitai-com.translate.goog/2023/11/98690.html?_x_tr_sl=zh-CN&_x_tr_tl=en&_x_tr_hl=zh-CN&_x_tr_pto=wapp">Tencent Talent Program</a></li>
-        <li><a href="https://www.bloomberg.com/news/newsletters/2025-10-29/bug-bounty-rewards-keep-growing-for-cyber-researchers-who-squash-flaws?srnd=undefined&embedded-checkout=true#:~:text=In%20Connecticut%2C%2016%2Dyear%2Dold%20Ruikai%20Peng%20often%20searches%20for%20vulnerabilities%20during%20class.%20Peng%20has%20earned%20over%20$20%2C000%20through%20ethical%20hacking%2C%20part%20of%20which%20he's%20used%20to%20bootstrap%20his%20startup%20Pwno%2C%20which%20develops%20AI%20models%20that%20detect%20the%20same%20types%20of%20vulnerabilities.">Bloomberg...</a></li>
+      </ul>
+      Media stuff: 
+      <ul>
+      <li><a href="https://www.bugcrowd.com/blog/hacker-spotlight-ruikai-peng/">Bugcrowd: Ruikai Peng, Spotlight</a></li>
+        <li><a href="https://www.bloomberg.com/news/newsletters/2025-10-29/bug-bounty-rewards-keep-growing-for-cyber-researchers-who-squash-flaws?srnd=undefined&embedded-checkout=true#:~:text=In%20Connecticut%2C%2016%2Dyear%2Dold%20Ruikai%20Peng%20often%20searches%20for%20vulnerabilities%20during%20class.%20Peng%20has%20earned%20over%20$20%2C000%20through%20ethical%20hacking%2C%20part%20of%20which%20he's%20used%20to%20bootstrap%20his%20startup%20Pwno%2C%20which%20develops%20AI%20models%20that%20detect%20the%20same%20types%20of%20vulnerabilities.">Bloomberg: 16 y/o from CT, AI cyber startup</a></li>
         <li><a href="https://docs.google.com/document/d/1IhVweSk1wON61WcfZunOqHBZNf-CEsLsOXWZ56svRrQ/edit?usp=sharing">questions</a> / <a href="/Ruikai Peng.pdf">resume</a></li>
       </ul>
 
