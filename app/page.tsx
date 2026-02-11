@@ -39,7 +39,7 @@ export default function Home() {
         <li>previous <a href="/projs/">bugs</a> I found</li>
         <li><a href="https://pwno.ai">Pwno</a>, founder
           <ul>
-            <li>We build AIs for real-world <a href="https://pwno.io">security problems</a> <br/> at the innermost systems that billions used daily</li>
+            <li>We build AIs for real-world <a href="https://pwno.io">memory security problems</a> <br/> at the innermost systems that billions used daily</li>
           </ul>
         </li>
         <li><a href="https://retr0.blog/">retr0.blog</a>, storytell of how I exploit bugs from the lowest part of computers
