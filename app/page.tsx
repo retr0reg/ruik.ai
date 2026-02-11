@@ -77,7 +77,7 @@ export default function Home() {
       <ul>
         <li>I did my first <a href="https://zhuanlan.zhihu.com/p/432732290">router ROP</a> at 12</li>
         <li>I can play <a href="https://www.youtube.com/watch?v=_DfQC5qHhbo">neon</a> by john mayer</li>
-        <li>I played <a href="/troy.png">troy bolton</a> in middle school</li>
+        <li>I played troy bolton in middle school</li>
       </ul>
 
       <footer className="footer-nav">
