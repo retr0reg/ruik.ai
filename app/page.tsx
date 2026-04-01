@@ -27,11 +27,9 @@ export default function Home() {
         Hey, I am Ruikai Peng. <br/> I am a 16 years-old <span className="mobile-break"></span> working on the security of the lowest parts of computer systems. <br/><i>(I&apos;ve been doing this since 11.)</i>
       </p>
 
-      <blockquote className="quote-block">
-        here is very little what I do, <br/>
-        book an actual <a href="https://calendar.app.google/cRjnJVTxNfZT5erN7">zoom call</a> if you want actual to know me. <br/>
-        we can talk about snowboarding or musicals if you want<br/>
-      </blockquote>
+      {/* <blockquote className="quote-block">
+        <a href="https://calendar.app.google/cRjnJVTxNfZT5erN7">zoom call</a> <br/>
+      </blockquote> */}
 
       <p>things about me:</p>
 
