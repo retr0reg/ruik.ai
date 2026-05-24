@@ -24,7 +24,7 @@ export default function Home() {
       </div>
 
       <p>
-        Hey, I am Ruikai Peng. <br/> I am a 16 years-old <span className="mobile-break"></span> working on the security of the lowest parts of computer systems. <br/><i>(I&apos;ve been doing this since 11.)</i>
+        Hey, I am Ruikai. <br/> I am a 16 years-old <span className="mobile-break"></span> working on the security of the lowest parts of computer systems. <br/><i>(I&apos;ve been doing this since 11.)</i>
       </p>
 
       {/* <blockquote className="quote-block">
@@ -53,29 +53,28 @@ export default function Home() {
           </ul>
         </li>
         <br/>
-        <li>Youngest speaker at <a href="https://offensiveaicon.com">OAIC</a>
+        <h2>Talks</h2>
+        <li>Youngest speaker at <a href="https://offensiveaicon.com">OAIC</a> <i>(Oct, 2025)</i>
           <ul><li><a href="https://research.pwno.io/deductive-engine">Deductive Engine</a>: Human Inspired Taint Reasoning</li></ul>
           <ul><li>I talked about how I designed a human-inspired taint engine via LLM reasoning, and how we used it found two overflows in Unitree Robodogs' BLE stack within 20 minutes</li></ul>
         </li>
-        <li>Youngest speaker at <a href="https://www.linkedin.com/feed/update/urn:li:activity:7359257033641971713/">Black Hat USA</a>
+        <li>Youngest speaker at <a href="https://www.linkedin.com/feed/update/urn:li:activity:7359257033641971713/">Black Hat USA</a> <i>(Aug, 2025)</i>
           <ul><li><a href="https://blackhat.com/us-25/briefings/schedule/#thinking-outside-the-sink-how-tree-of-ast-redefines-the-boundaries-of-dataflow-analysis-46628">Thinking Outside the Sink</a>: Dataflow and Tree-of-Thoughts</li></ul>
           <ul><li>I talked about we designed a dataflow engine inspired by Tree-of-Thoughts, and how we used it to do vulnerability discovery to PoCs generation <i>(pruning, restriction generation and that kind of stuff)</i></li></ul>
         </li>
-        <li>Youngest speaker at <a href="https://zer0con.org/#speaker-section">Zer0con</a>
+        <li>Youngest speaker at <a href="https://zer0con.org/#speaker-section">Zer0con</a> <i>(Apr, 2025)</i>
           <ul><li><a href="https://research.pwno.io/llama-paradox">Llama&apos;s Paradox</a>: Hardcore Inference Attack</li></ul>
           <ul><li>I talked about how I use a super fun but complex way to RCE LLama.cpp via a little heap-overflow in tensor processing.</li></ul>
         </li>
         <li>Youngest member of <a href="https://www-qbitai-com.translate.goog/2023/11/98690.html?_x_tr_sl=zh-CN&_x_tr_tl=en&_x_tr_hl=zh-CN&_x_tr_pto=wapp">Tencent Talent Program</a></li>
-      </ul>
-      Media stuff: 
-      <ul>
-      <li><a href="https://www.bugcrowd.com/blog/hacker-spotlight-ruikai-peng/">Bugcrowd: Ruikai Peng, Spotlight</a></li>
-        <li><a href="https://www.bloomberg.com/news/newsletters/2025-10-29/bug-bounty-rewards-keep-growing-for-cyber-researchers-who-squash-flaws?srnd=undefined&embedded-checkout=true#:~:text=In%20Connecticut%2C%2016%2Dyear%2Dold%20Ruikai%20Peng%20often%20searches%20for%20vulnerabilities%20during%20class.%20Peng%20has%20earned%20over%20$20%2C000%20through%20ethical%20hacking%2C%20part%20of%20which%20he's%20used%20to%20bootstrap%20his%20startup%20Pwno%2C%20which%20develops%20AI%20models%20that%20detect%20the%20same%20types%20of%20vulnerabilities.">Bloomberg: 16 y/o from CT, AI cyber startup</a></li>
+        <br/>
+        <h2>Media</h2>
+        <li><a href="https://youtu.be/nepKKz-MzFM?si=KTeZ2Da38B3--kcF&t=5058">Mentioned</a> by Lex Friedman</li>
+        <li><a href="https://www.bugcrowd.com/blog/hacker-spotlight-ruikai-peng/">Bugcrowd</a>: Ruikai Peng, Spotlight</li>
+        <li><a href="https://www.bloomberg.com/news/newsletters/2025-10-29/bug-bounty-rewards-keep-growing-for-cyber-researchers-who-squash-flaws?srnd=undefined&embedded-checkout=true#:~:text=In%20Connecticut%2C%2016%2Dyear%2Dold%20Ruikai%20Peng%20often%20searches%20for%20vulnerabilities%20during%20class.%20Peng%20has%20earned%20over%20$20%2C000%20through%20ethical%20hacking%2C%20part%20of%20which%20he's%20used%20to%20bootstrap%20his%20startup%20Pwno%2C%20which%20develops%20AI%20models%20that%20detect%20the%20same%20types%20of%20vulnerabilities.">Bloomberg</a>: 16 y/o from CT, AI cyber startup</li>
         <li><a href="https://docs.google.com/document/d/1IhVweSk1wON61WcfZunOqHBZNf-CEsLsOXWZ56svRrQ/edit?usp=sharing">questions</a> / <a href="/Ruikai Peng.pdf">resume</a></li>
-      </ul>
-
-      <p>fun facts:</p>
-      <ul>
+        <br/>
+        <h2>Fun Facts</h2>
         <li>I did my first <a href="https://zhuanlan.zhihu.com/p/432732290">router ROP</a> at 12</li>
         <li>I can play <a href="https://www.youtube.com/watch?v=_DfQC5qHhbo">neon</a> by john mayer</li>
         <li>I played troy bolton in middle school</li>
