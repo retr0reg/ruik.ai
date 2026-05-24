@@ -35,7 +35,7 @@ export default function Home() {
 
       <ul>
         <li>previous <a href="/projs/">bugs</a> I found</li>
-        <li><a href="https://pwno.ai">Pwno</a>, founder
+        <li><a href="https://pwno.io">Pwno</a>, founder
           <ul>
             <li>We build AIs for real-world <a href="https://pwno.io">memory security problems</a> <br/> at the innermost systems that billions used daily</li>
             <li>We help secured: <code>Linux</code>, <code>FFmpeg</code>, <code>V8</code>, <code>Firefox</code>, <code>Chromium</code>, <code>WebKit</code>, <code>PostgreSQL</code>, <code>Redis</code>, ...
