@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -23,6 +24,15 @@ export default function Home() {
         </a>
       </div>
 
+      <Image
+        src="/ruikai.png"
+        alt="Ruikai Peng"
+        width={300}
+        height={300}
+        priority
+        className="hero-image"
+      />
+
       <p>
         Hey, I am Ruikai. <br/> I am a 17 years-old <span className="mobile-break"></span> working on the security of the lowest parts of computer systems. I started working on binary security since 11.
       </p>
@@ -36,8 +46,8 @@ export default function Home() {
       <ul>
         <li><a href="https://pwno.io">Pwno</a>, founder
           <ul>
-            <li>We build AIs for real-world <a href="https://pwno.io">memory security problems</a> <br/> at the innermost systems that billions used daily</li>
-            <li>We help secured: <code>Linux</code>, <code>FFmpeg</code>, <code>V8</code>, <code>Firefox</code>, <code>Chromium</code>, <code>WebKit</code>, <code>PostgreSQL</code>, <code>Redis</code>, ...
+            <li>r&d startup, LLMs for real-world <a href="https://pwno.io">memory security problems</a> <br/> at the innermost systems that billions used daily</li>
+            <li>We found memory bugs in: <code>Linux</code>, <code>FFmpeg</code>, <code>V8</code>, <code>Firefox</code>, <code>Chromium</code>, <code>WebKit</code>, <code>PostgreSQL</code>, <code>Redis</code>, ...
               {/*Linux, ffmpeg, v8, firefox, chromium, webkit, postgresql, redis... */}
             </li>
           </ul>

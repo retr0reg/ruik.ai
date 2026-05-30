@@ -38,6 +38,14 @@ h1 {
     margin-bottom: 0.5em;
 }
 
+.hero-image {
+    width: 200px;
+    height: auto;
+    display: block;
+    margin: 1.5em auto;
+    border-radius: 4px;
+}
+
 /* Footer Navigation */
 .footer-nav {
     display: flex;
