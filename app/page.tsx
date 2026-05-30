@@ -24,7 +24,7 @@ export default function Home() {
       </div>
 
       <p>
-        Hey, I am Ruikai. <br/> I am a 16 years-old <span className="mobile-break"></span> working on the security of the lowest parts of computer systems. <br/><i>(I&apos;ve been doing this since 11.)</i>
+        Hey, I am Ruikai. <br/> I am a 17 years-old <span className="mobile-break"></span> working on the security of the lowest parts of computer systems. I started working on binary security since 11.
       </p>
 
       {/* <blockquote className="quote-block">
@@ -34,7 +34,6 @@ export default function Home() {
       <p>things about me:</p>
 
       <ul>
-        <li>previous <a href="/projs/">bugs</a> I found</li>
         <li><a href="https://pwno.io">Pwno</a>, founder
           <ul>
             <li>We build AIs for real-world <a href="https://pwno.io">memory security problems</a> <br/> at the innermost systems that billions used daily</li>
@@ -51,6 +50,7 @@ export default function Home() {
             <li><a href="https://retr0.blog/blog/tenda-ac8-rop">rop&apos;ing a <code>tenda</code> router</a></li>
             <li><a href="https://retr0.blog/blog">...</a></li>
           </ul>
+          <li><a href="/projs/">bugs</a></li>
         </li>
         <br/>
         <h2>Talks</h2>
