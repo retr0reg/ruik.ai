@@ -34,7 +34,7 @@ export default function Home() {
       />
 
       <p>
-        Hey, I am Ruikai. <br/> I am a 17 years-old <span className="mobile-break"></span> working on binary <span className="footnote">(inner workings of computers)</span> security and LLMs. I&apos;ve been working on it since 11.
+        Hey, I am Ruikai. <br/> I am a 17 years-old <span className="mobile-break"></span> working on binary<a href="#fn-binary" id="fnref-binary" className="footnote-ref"><sup>[1]</sup></a> security and LLMs. I&apos;ve been working on it since 11.
       </p>
 
       {/* <blockquote className="quote-block">
@@ -54,7 +54,7 @@ export default function Home() {
         </li>
         <li><a href="https://retr0.blog/">retr0.blog</a>, storytell of how I exploit bugs from the lowest part of computers
           <ul>
-            <li className="highlight-item"><a href="https://news.ycombinator.com/item?id=43451935">exploiting a heap overflow in <code>llama.cpp</code></a></li>
+            <li className="highlight-item"><a href="https://news.ycombinator.com/item?id=43451935">exploiting a heap overflow in <code>llama.cpp</code></a><a href="#fn-llama" id="fnref-llama" className="footnote-ref"><sup>[2]</sup></a></li>
             {/* <div className="footnote">^^^ once yc hackernews top 3</div> */}
             <li><a href="https://retr0.blog/blog/evernote-rce">creating a one-click rce in <code>evernote</code></a></li>
             <li><a href="https://retr0.blog/blog/tenda-ac8-rop">rop&apos;ing a <code>tenda</code> router</a></li>
@@ -90,6 +90,16 @@ export default function Home() {
         <li>I can play <a href="https://www.youtube.com/watch?v=_DfQC5qHhbo">neon</a> by john mayer</li>
         <li>I played troy bolton in middle school</li>
       </ul>
+
+      <hr className="footnotes-divider" />
+      <ol className="footnotes-list">
+        <li id="fn-binary">
+          binary — the inner workings of computers.
+        </li>
+        <li id="fn-llama">
+          once YC Hacker News top 3
+        </li>
+      </ol>
 
       <footer className="footer-nav">
         <span className="nav-item active">home</span>

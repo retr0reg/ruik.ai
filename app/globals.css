@@ -192,6 +192,39 @@ a:hover {
     color: #666666;
 }
 
+.footnote-ref {
+    text-decoration: none;
+    color: #666666;
+}
+
+.footnote-ref sup {
+    font-size: 0.65em;
+    margin-left: 0.1em;
+    letter-spacing: 0.02em;
+}
+
+.footnote-ref:hover sup {
+    color: #000000;
+}
+
+.footnotes-divider {
+    margin: 3em 0 1em;
+    border: none;
+    border-top: 1px solid #e0e0e0;
+}
+
+.footnotes-list {
+    font-size: 0.8em;
+    color: #666666;
+    line-height: 1.5;
+    padding-left: 1.4em;
+    margin-bottom: 1em;
+}
+
+.footnotes-list li {
+    margin-bottom: 0.3em;
+}
+
 /* Inline code */
 code {
     font-size: 13px;
