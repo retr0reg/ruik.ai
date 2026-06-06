@@ -34,7 +34,7 @@ export default function Home() {
       />
 
       <p>
-        Hey, I am Ruikai. <br/> I am a 17 years-old <span className="mobile-break"></span> working on the security of the lowest parts of computer systems. I started working on binary security since 11.
+        Hey, I am Ruikai. <br/> I am a 17 years-old <span className="mobile-break"></span> working on binary <span className="footnote">(inner workings of computers)</span> security and LLMs. I&apos;ve been working on it since 11.
       </p>
 
       {/* <blockquote className="quote-block">
@@ -60,6 +60,7 @@ export default function Home() {
             <li><a href="https://retr0.blog/blog/tenda-ac8-rop">rop&apos;ing a <code>tenda</code> router</a></li>
             <li><a href="https://retr0.blog/blog">...</a></li>
           </ul>
+          <li>US National Team, International Cybersecurity Olympiad (ICO)</li>
           <li><a href="/projs/">bugs</a></li>
         </li>
         <br/>

@@ -188,10 +188,8 @@ a:hover {
 
 /* Footnote */
 .footnote {
-    margin-top: 4px;
-    font-size: 12px;
+    font-size: 0.7em;
     color: #666666;
-    font-family: 'Cascadia Code', 'JetBrains Mono', monospace;
 }
 
 /* Inline code */
