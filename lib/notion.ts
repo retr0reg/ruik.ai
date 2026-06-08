@@ -1,13 +1,8 @@
 import { Client } from "@notionhq/client";
 import { NotionToMarkdown } from "notion-to-md";
-import fs from "fs";
-import path from "path";
-import crypto from "crypto";
+import { uploadNotionImage } from "./r2";
 
 const BLOG_DATABASE_ID = process.env.NOTION_BLOG_DATABASE_ID;
-
-// Directory to cache downloaded images
-const IMAGE_CACHE_DIR = path.join(process.cwd(), "public", "notion-images");
 
 // Create client lazily to ensure env vars are loaded
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -112,67 +107,7 @@ export interface PageContent {
   author: string | null;
 }
 
-// Download an image from URL and save it locally, returning the local path
-async function cacheImage(url: string): Promise<string> {
-  // Hash by URL path only (drop query string) so signed-URL signature churn
-  // doesn't invalidate the cache between builds / revalidations.
-  let hashKey = url;
-  try {
-    const parsed = new URL(url);
-    hashKey = parsed.origin + parsed.pathname;
-  } catch {
-    // Not a parseable URL, fall back to raw string
-  }
-  const urlHash = crypto.createHash("md5").update(hashKey).digest("hex");
-
-  // Extract extension from URL or default to png
-  let ext = "png";
-  const extMatch = url.match(/\.([a-zA-Z0-9]+)(?:\?|$)/);
-  if (extMatch) {
-    const possibleExt = extMatch[1].toLowerCase();
-    if (["png", "jpg", "jpeg", "gif", "webp", "svg"].includes(possibleExt)) {
-      ext = possibleExt;
-    }
-  }
-
-  const filename = `${urlHash}.${ext}`;
-  const localPath = path.join(IMAGE_CACHE_DIR, filename);
-  const publicPath = `/notion-images/${filename}`;
-
-  // If already cached (e.g., persisted from build), use it.
-  if (fs.existsSync(localPath)) {
-    return publicPath;
-  }
-
-  // Ensure cache directory exists. On Vercel runtime the /var/task FS is
-  // read-only and this will throw — that's expected; fall through to the
-  // fresh Notion URL, which is valid for ~1h from this revalidation.
-  try {
-    if (!fs.existsSync(IMAGE_CACHE_DIR)) {
-      fs.mkdirSync(IMAGE_CACHE_DIR, { recursive: true });
-    }
-  } catch {
-    return url;
-  }
-
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      console.error(`Failed to fetch image: ${url}`);
-      return url;
-    }
-
-    const buffer = await response.arrayBuffer();
-    fs.writeFileSync(localPath, Buffer.from(buffer));
-    console.log(`Cached image: ${filename}`);
-    return publicPath;
-  } catch (error) {
-    console.error(`Failed to cache image: ${url}`, error);
-    return url;
-  }
-}
-
-// Process markdown to download and cache all images
+// Process markdown to mirror all remote images into R2
 async function cacheImagesInMarkdown(markdown: string): Promise<string> {
   // Match markdown images: ![alt](url) or ![alt](url "title")
   const imageRegex = /!\[([^\]]*)\]\(([^)\s]+)(?:\s+"([^"]*)")?\)/g;
@@ -192,11 +127,11 @@ async function cacheImagesInMarkdown(markdown: string): Promise<string> {
   // Download all images in parallel
   const replacements = await Promise.all(
     matches.map(async (m) => {
-      // Only cache remote URLs (not local paths)
+      // Only mirror remote URLs (not local paths)
       if (m.url.startsWith("http://") || m.url.startsWith("https://")) {
-        const localPath = await cacheImage(m.url);
+        const r2Url = await uploadNotionImage(m.url);
         const titlePart = m.title ? ` "${m.title}"` : "";
-        return { original: m.full, replacement: `![${m.alt}](${localPath}${titlePart})` };
+        return { original: m.full, replacement: `![${m.alt}](${r2Url}${titlePart})` };
       }
       return { original: m.full, replacement: m.full };
     })
@@ -235,7 +170,7 @@ export async function getPageContent(pageId: string): Promise<PageContent> {
     // Convert blocks to markdown string
     const mdString = n2m.toMarkdownString(mdBlocks);
 
-    // Cache all images locally so they don't expire
+    // Mirror images to R2 so signed Notion URLs don't expire
     const markdownWithCachedImages = await cacheImagesInMarkdown(mdString.parent);
 
     return {

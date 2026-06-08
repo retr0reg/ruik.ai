@@ -41,3 +41,7 @@ next-env.d.ts
 
 # notion image cache
 /public/notion-images/
+
+# r2 sync source (uploaded via `npm run res:sync`)
+/res
+

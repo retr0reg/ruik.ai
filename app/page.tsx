@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { publicAssetUrl } from "@/lib/r2";
 
 export default function Home() {
   return (
@@ -25,7 +26,7 @@ export default function Home() {
       </div>
 
       <Image
-        src="/ruikai.png"
+        src={publicAssetUrl("ruikai.png")}
         alt="Ruikai Peng"
         width={300}
         height={300}
@@ -83,7 +84,7 @@ export default function Home() {
         <li><a href="https://youtu.be/nepKKz-MzFM?si=KTeZ2Da38B3--kcF&t=5058">Mentioned</a> by Lex Fridman</li>
         <li><a href="https://www.bugcrowd.com/blog/hacker-spotlight-ruikai-peng/">Bugcrowd</a>: Ruikai Peng, Spotlight</li>
         <li><a href="https://www.bloomberg.com/news/newsletters/2025-10-29/bug-bounty-rewards-keep-growing-for-cyber-researchers-who-squash-flaws?srnd=undefined&embedded-checkout=true#:~:text=In%20Connecticut%2C%2016%2Dyear%2Dold%20Ruikai%20Peng%20often%20searches%20for%20vulnerabilities%20during%20class.%20Peng%20has%20earned%20over%20$20%2C000%20through%20ethical%20hacking%2C%20part%20of%20which%20he's%20used%20to%20bootstrap%20his%20startup%20Pwno%2C%20which%20develops%20AI%20models%20that%20detect%20the%20same%20types%20of%20vulnerabilities.">Bloomberg</a>: 16 y/o from CT, AI cyber startup</li>
-        <li><a href="https://docs.google.com/document/d/1IhVweSk1wON61WcfZunOqHBZNf-CEsLsOXWZ56svRrQ/edit?usp=sharing">questions</a> / <a href="/Ruikai Peng.pdf">resume</a></li>
+        <li><a href="https://docs.google.com/document/d/1IhVweSk1wON61WcfZunOqHBZNf-CEsLsOXWZ56svRrQ/edit?usp=sharing">questions</a> / <a href={publicAssetUrl("Ruikai Peng.pdf")}>resume</a></li>
         <br/>
         <h2>Fun Facts</h2>
         <li>I did my first <a href="https://zhuanlan.zhihu.com/p/432732290">router ROP</a> at 12</li>
@@ -104,6 +105,7 @@ export default function Home() {
       <footer className="footer-nav">
         <span className="nav-item active">home</span>
         <Link href="/blog" className="nav-item">blog</Link>
+        <Link href="/notes" className="nav-item">notes</Link>
       </footer>
     </div>
   );

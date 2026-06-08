@@ -45,6 +45,7 @@ export default async function BlogPage() {
       <footer className="footer-nav">
         <Link href="/" className="nav-item">home</Link>
         <span className="nav-item active">blog</span>
+        <Link href="/notes" className="nav-item">notes</Link>
       </footer>
     </div>
   );

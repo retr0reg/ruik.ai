@@ -104,6 +104,41 @@ h1 {
     font-style: italic;
 }
 
+.notes-ext {
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.notes-folder {
+    color: var(--text-primary);
+}
+
+.notes-breadcrumbs {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85em;
+    margin: 0.5em 0 1.5em;
+    color: var(--text-muted);
+}
+
+.notes-crumb {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+
+.notes-crumb:hover {
+    color: var(--text-primary);
+}
+
+.notes-crumb.active {
+    color: var(--text-muted);
+}
+
+.notes-crumb-sep {
+    margin: 0 0.4em;
+    color: var(--text-muted);
+}
+
 .blog-footer-note {
     margin-top: 2.2em;
     text-align: center;
