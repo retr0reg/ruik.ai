@@ -114,24 +114,17 @@ export interface PageContent {
 
 // Download an image from URL and save it locally, returning the local path
 async function cacheImage(url: string): Promise<string> {
-  // Vercel serverless (and similar) can't write to /var/task/public
-  if (process.env.VERCEL) {
-    return url;
-  }
-
-  // Ensure cache directory exists
+  // Hash by URL path only (drop query string) so signed-URL signature churn
+  // doesn't invalidate the cache between builds / revalidations.
+  let hashKey = url;
   try {
-    if (!fs.existsSync(IMAGE_CACHE_DIR)) {
-      fs.mkdirSync(IMAGE_CACHE_DIR, { recursive: true });
-    }
-  } catch (error) {
-    console.error("Failed to create image cache dir:", error);
-    return url;
+    const parsed = new URL(url);
+    hashKey = parsed.origin + parsed.pathname;
+  } catch {
+    // Not a parseable URL, fall back to raw string
   }
+  const urlHash = crypto.createHash("md5").update(hashKey).digest("hex");
 
-  // Generate a stable filename from the URL hash
-  const urlHash = crypto.createHash("md5").update(url).digest("hex");
-  
   // Extract extension from URL or default to png
   let ext = "png";
   const extMatch = url.match(/\.([a-zA-Z0-9]+)(?:\?|$)/);
@@ -141,21 +134,32 @@ async function cacheImage(url: string): Promise<string> {
       ext = possibleExt;
     }
   }
-  
+
   const filename = `${urlHash}.${ext}`;
   const localPath = path.join(IMAGE_CACHE_DIR, filename);
   const publicPath = `/notion-images/${filename}`;
 
-  // Skip if already cached
+  // If already cached (e.g., persisted from build), use it.
   if (fs.existsSync(localPath)) {
     return publicPath;
+  }
+
+  // Ensure cache directory exists. On Vercel runtime the /var/task FS is
+  // read-only and this will throw — that's expected; fall through to the
+  // fresh Notion URL, which is valid for ~1h from this revalidation.
+  try {
+    if (!fs.existsSync(IMAGE_CACHE_DIR)) {
+      fs.mkdirSync(IMAGE_CACHE_DIR, { recursive: true });
+    }
+  } catch {
+    return url;
   }
 
   try {
     const response = await fetch(url);
     if (!response.ok) {
       console.error(`Failed to fetch image: ${url}`);
-      return url; // Fall back to original URL
+      return url;
     }
 
     const buffer = await response.arrayBuffer();
@@ -164,7 +168,7 @@ async function cacheImage(url: string): Promise<string> {
     return publicPath;
   } catch (error) {
     console.error(`Failed to cache image: ${url}`, error);
-    return url; // Fall back to original URL
+    return url;
   }
 }
 
