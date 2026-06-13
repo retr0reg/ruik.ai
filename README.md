@@ -1,0 +1,1 @@
+npm run res:sync
