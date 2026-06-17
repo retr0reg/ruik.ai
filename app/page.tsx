@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import { publicAssetUrl } from "@/lib/r2";
 
 export default function Home() {
   return (
@@ -26,7 +25,7 @@ export default function Home() {
       </div>
 
       <Image
-        src={publicAssetUrl("ruikai.png")}
+        src="/ruikai.png"
         alt="Ruikai Peng"
         width={300}
         height={300}
