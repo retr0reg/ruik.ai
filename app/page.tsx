@@ -34,7 +34,7 @@ export default function Home() {
       />
 
       <p>
-        Hey, I am Ruikai, people call me Patrick. <br/> I am a 17 years-old <span className="mobile-break"></span> working on binary<a href="#fn-binary" id="fnref-binary" className="footnote-ref"><sup>[1]</sup></a> security and LLMs. I&apos;ve been working on it since 11.
+        Hey, I am Ruikai. People call me Patrick. <br/> I am a 17 years-old <span className="mobile-break"></span> working on binary<a href="#fn-binary" id="fnref-binary" className="footnote-ref"><sup>[1]</sup></a> security and LLMs. I&apos;ve been working on it since 11.
       </p>
 
       {/* <blockquote className="quote-block">
