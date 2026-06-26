@@ -25,6 +25,12 @@ export interface BlogEntry {
   author: string;
   date: string;
   pageId: string;
+  // Set for posts hosted elsewhere (e.g. retr0.blog). When `external` is true,
+  // `url` is an absolute outbound link instead of an internal /blog/[id] route.
+  external?: boolean;
+  url?: string;
+  source?: string;
+  subtitle?: string;
 }
 
 // Get plain text content (for database properties)

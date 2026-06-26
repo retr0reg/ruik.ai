@@ -1,4 +1,4 @@
-import { getBlogs, BlogEntry } from "@/lib/notion";
+import { getAllBlogs, BlogEntry } from "@/lib/blogs";
 import Link from "next/link";
 
 // Revalidate every 5 minutes
@@ -9,29 +9,54 @@ function formatDate(dateStr: string): string {
   const date = new Date(dateStr);
   return date.toLocaleDateString("en-US", {
     month: "short",
-    day: "numeric",
+    day: "2-digit",
     year: "numeric",
   });
 }
 
 export default async function BlogPage() {
-  const entries = await getBlogs();
+  const entries = await getAllBlogs();
 
   return (
     <div className="container">
       <h1>Ruikai Peng</h1>
 
       <div className="blog-list">
-        {entries.map((entry: BlogEntry) => (
-          <article key={entry.id} className="blog-entry">
-            <Link href={`/blog/${entry.id}`} className="blog-title">
-              {entry.title}
-            </Link>
-            <span className="blog-meta">
-              {entry.author}{entry.author && entry.date && " · "}{formatDate(entry.date)}
-            </span>
-          </article>
-        ))}
+        {entries.map((entry: BlogEntry) => {
+          const meta = [entry.author, formatDate(entry.date)]
+            .filter(Boolean)
+            .join(" · ");
+          return (
+            <article key={entry.id} className="blog-entry">
+              {entry.external && entry.url ? (
+                <a
+                  href={entry.url}
+                  className="blog-title"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {entry.title}
+                </a>
+              ) : (
+                <Link href={`/blog/${entry.id}`} className="blog-title">
+                  {entry.title}
+                </Link>
+              )}
+              {entry.subtitle && (
+                <span className="blog-subtitle">{entry.subtitle}</span>
+              )}
+              <span className="blog-meta">
+                {meta}
+                {entry.external && entry.source && (
+                  <>
+                    {meta && " · "}
+                    <span className="blog-source">{entry.source}</span>
+                  </>
+                )}
+              </span>
+            </article>
+          );
+        })}
         {entries.length === 0 && (
           <p className="blog-empty">No posts yet.</p>
         )}
