@@ -47,7 +47,7 @@ export default function Home() {
         <li><a href="https://pwno.io">Pwno</a>, founder
           <ul>
             <li>r&d startup, LLMs for real-world <a href="https://pwno.io">memory security problems</a> <br/> at the innermost systems that billions used daily</li>
-            <li>We found memory bugs in: <code>Linux</code>, <code>FFmpeg</code>, <code>V8</code>, <code>Firefox</code>, <code>Chromium</code>, <code>WebKit</code>, <code>PostgreSQL</code>, <code>Redis</code>, ...
+            <li>I've found memory bugs in: <code>Linux</code>, <code>FFmpeg</code>, <code>V8</code>, <code>Firefox</code>, <code>Chromium</code>, <code>WebKit</code>, <code>PostgreSQL</code>, <code>Redis</code>, ...
               {/*Linux, ffmpeg, v8, firefox, chromium, webkit, postgresql, redis... */} 
             </li>
           </ul>
