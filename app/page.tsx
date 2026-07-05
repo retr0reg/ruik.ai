@@ -104,7 +104,7 @@ export default function Home() {
       <footer className="footer-nav">
         <span className="nav-item active">home</span>
         <Link href="/blog" className="nav-item">blog</Link>
-        <Link href="/notes" className="nav-item">notes</Link>
+       {/* <Link href="/notes" className="nav-item">notes</Link> */}
       </footer>
     </div>
   );
