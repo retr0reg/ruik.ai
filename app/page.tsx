@@ -65,19 +65,22 @@ export default function Home() {
         </li>
         <br/>
         <h2>Talks</h2>
-        <li>Youngest speaker at <a href="https://offensiveaicon.com">OAIC</a> <i>(Oct, 2025)</i>
+        <li>Speaker<a href="#fn-age" id="fnref-age" className="footnote-ref"><sup>[3]</sup></a> at <a href="https://seclab.stanford.edu/RealWorldAIsec/">Stanford AI Security Con</a> <i>(June, 2026)</i>
+          <ul><li><a href="https://pwno.io/diff">Rolling in the Diffs</a>, <i>Lightning Talk</i></li></ul>
+        </li>
+        <li>Speaker<a href="#fn-age" className="footnote-ref"><sup>[3]</sup></a> at <a href="https://offensiveaicon.com">OAIC</a> <i>(Oct, 2025)</i>
           <ul><li><a href="https://research.pwno.io/deductive-engine">Deductive Engine</a>: Human Inspired Taint Reasoning</li></ul>
           <ul><li>I talked about how I designed a human-inspired taint engine via LLM reasoning, and how we used it found two overflows in Unitree Robodogs' BLE stack within 20 minutes</li></ul>
         </li>
-        <li>Youngest speaker at <a href="https://www.linkedin.com/feed/update/urn:li:activity:7359257033641971713/">Black Hat USA</a> <i>(Aug, 2025)</i>
+        <li>Speaker<a href="#fn-age" className="footnote-ref"><sup>[3]</sup></a> at <a href="https://www.linkedin.com/feed/update/urn:li:activity:7359257033641971713/">Black Hat USA</a> <i>(Aug, 2025)</i>
           <ul><li><a href="https://blackhat.com/us-25/briefings/schedule/#thinking-outside-the-sink-how-tree-of-ast-redefines-the-boundaries-of-dataflow-analysis-46628">Thinking Outside the Sink</a>: Dataflow and Tree-of-Thoughts</li></ul>
           <ul><li>I talked about we designed a dataflow engine inspired by Tree-of-Thoughts, and how we used it to do vulnerability discovery to PoCs generation <i>(pruning, restriction generation and that kind of stuff)</i></li></ul>
         </li>
-        <li>Youngest speaker at <a href="https://zer0con.org/#speaker-section">Zer0con</a> <i>(Apr, 2025)</i>
+        <li>Speaker<a href="#fn-age" className="footnote-ref"><sup>[3]</sup></a> at <a href="https://zer0con.org/#speaker-section">Zer0con</a> <i>(Apr, 2025)</i>
           <ul><li><a href="https://research.pwno.io/llama-paradox">Llama&apos;s Paradox</a>: Hardcore Inference Attack</li></ul>
           <ul><li>I talked about how I use a super fun but complex way to RCE LLama.cpp via a little heap-overflow in tensor processing.</li></ul>
         </li>
-        <li>Youngest member of <a href="https://www-qbitai-com.translate.goog/2023/11/98690.html?_x_tr_sl=zh-CN&_x_tr_tl=en&_x_tr_hl=zh-CN&_x_tr_pto=wapp">Tencent Talent Program</a></li>
+        <li>Member<a href="#fn-age" className="footnote-ref"><sup>[3]</sup></a> of <a href="https://www-qbitai-com.translate.goog/2023/11/98690.html?_x_tr_sl=zh-CN&_x_tr_tl=en&_x_tr_hl=zh-CN&_x_tr_pto=wapp">Tencent Talent Program</a></li>
         <br/>
         <h2>Media</h2>
         <li><a href="https://youtu.be/nepKKz-MzFM?si=KTeZ2Da38B3--kcF&t=5058">Mentioned</a> by Lex Fridman</li>
@@ -98,6 +101,9 @@ export default function Home() {
         </li>
         <li id="fn-llama">
           once YC Hacker News top 3
+        </li>
+        <li id="fn-age">
+          youngest speaker/member in the program's history
         </li>
       </ol>
 
