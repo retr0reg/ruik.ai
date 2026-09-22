@@ -1,3 +1,4 @@
+
 ---
 title: Snake on Matrix
 date: 2026-09-21
@@ -6,7 +7,7 @@ subtitle: Creating Snake on direct-drive matrix, with Arduino Uno and a joystick
 
 # Snake on Matrix
 
-![R0004549](https://res.ruik.ai/images/R0004549.JPG)
+![My LED Snake](https://res.ruik.ai/images/R0004549.JPG)
 
 I set myself up with a pretty interesting challenge that required me to use all the pins on an Arduino Uno: trying to implement Snake on a direct-drive 8x8 LED matrix, drive a joystick using the two leftover digital pins, and creating a playable snake game using all 8x8 matrix – The last time I used an 8x8 matrix was back in primary school for a biocomputer project I was working on. Wiring these matrices is really a nightmare, but the idea of being able to play Snake on it is just so tempting. So, I guess give it a shot again this time?
 
@@ -57,7 +58,7 @@ Nothing was really wrong electrically. It's just that the joystick module was mo
 
 ## Final circuit 
 
-![R0004553](https://res.ruik.ai/images/R0004553.JPG)
+![The circuit](https://res.ruik.ai/images/R0004553.JPG)
 
 - Matrix rows 1-8: `13, A4, 2, 10, 9, 3, 8, 5` w/ 200 om resistors
 - Matrix columns 1-8: `A5, 7, 6, 12, 4, 11, A3, A2` (direct)
@@ -327,6 +328,21 @@ Implementing this is also straightforward:
 
 So all I had to do was incorporate the reward memory, hook it up to the number display, and simply display it after the termination of each session.
 
-## Use-case reflection
+## Use-case Reflection
+
+The interesting part of my build, is how it can serves as a low-resolution *glanceable* display: like something that communicates one piece of information from across a room, without needing that you pick it up and read it. A phone screen is high-resolution and needs your full attention, however, an 8x8 grid gives you one symbol you can read at a glance, from an angle, in peripheral vision. One interesting integration can be in a shared workshop or maker space, e.g., with 3D printers, so we can use a glyph to represent the state of the printers, while simple features such as a Snake game, and chill students down while they're whelmed by school work.  
+
+**What would need to change?**
+
+- Transistors on the row lines: with the current analysis above, a display that runs unattended for hours might needs to be inside spec
+- A real input: replacing the joystick: the machine's own status, over a network connection, rather than a human moving a stick
+- A brighter display: As we mentioned we are dimming the LEDs by a 1/8 brightness. We can also fix this by lowing the refresh rate, but the higher refresh rate is required for the display of the glyph.
+
+**Which skill from this unit would I rely on most?**
+
+Test & trialing, debugging and figuring where I am based on the situation and the proble I have. Figure out the way through understanding the setbacks and exploring solutions for these setbacks.
+
+![LEDs](https://res.ruik.ai/images/R0004551.JPG)
+
 
 
