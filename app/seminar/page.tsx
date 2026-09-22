@@ -18,17 +18,32 @@ export default function SeminarPage() {
 
       <div className="blog-list">
         {entries.map((entry) => (
-          <article key={entry.slug} className="blog-entry">
-            <Link href={`/seminar/${entry.slug}`} className="blog-title">
-              {entry.title}
-            </Link>
-            {entry.subtitle && (
-              <span className="blog-subtitle">{entry.subtitle}</span>
+          <article key={entry.slug} className="blog-entry seminar-entry">
+            {entry.image && (
+              <Link
+                href={`/seminar/${entry.slug}`}
+                className="seminar-thumb"
+                aria-hidden
+                tabIndex={-1}
+              >
+                {/* plain img: entries point at arbitrary files dropped in
+                    public/seminar-media, no need for the image optimizer */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={entry.image} alt="" loading="lazy" />
+              </Link>
             )}
-            <span className="blog-meta">
-              {formatEntryDate(entry.date)}
-              {entry.draft && " · draft"}
-            </span>
+            <div className="seminar-entry-text">
+              <Link href={`/seminar/${entry.slug}`} className="blog-title">
+                {entry.title}
+              </Link>
+              {entry.subtitle && (
+                <span className="blog-subtitle">{entry.subtitle}</span>
+              )}
+              <span className="blog-meta">
+                {formatEntryDate(entry.date)}
+                {entry.draft && " · draft"}
+              </span>
+            </div>
           </article>
         ))}
         {entries.length === 0 && <p className="blog-empty">No entries yet.</p>}

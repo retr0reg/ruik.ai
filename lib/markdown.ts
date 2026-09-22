@@ -25,9 +25,15 @@ function isImageFilename(text: string): boolean {
 const DEFAULT_IMAGE_BASE = "/mds/";
 let imageBase = DEFAULT_IMAGE_BASE;
 
-function resolveImageSrc(href: string): string {
+// Absolute paths, protocol-relative URLs and full URLs pass through; anything
+// else is a bare filename resolved against the base folder.
+export function resolveImagePath(href: string, base: string): string {
   if (/^([a-z][a-z0-9+.-]*:|\/\/|\/|#)/i.test(href)) return href;
-  return imageBase + href.replace(/^\.\//, "");
+  return base + href.replace(/^\.\//, "");
+}
+
+function resolveImageSrc(href: string): string {
+  return resolveImagePath(href, imageBase);
 }
 
 marked.use({

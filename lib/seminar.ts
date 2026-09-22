@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import { resolveImagePath } from "./markdown";
 
 // Journal entries for the Technology Seminar class. Plain .md files on disk —
 // drop a file in content/seminar/, redeploy, done.
@@ -16,6 +17,8 @@ export interface SeminarEntry {
   subtitle?: string;
   draft: boolean;
   content: string;
+  // First image in the entry, used as its thumbnail on the index
+  image?: string;
 }
 
 // Minimal frontmatter reader: `key: value` pairs between --- fences. Enough for
@@ -55,6 +58,26 @@ function titleFromSlug(slug: string): string {
   return slug.replace(/[-_]+/g, " ");
 }
 
+// Code blocks and inline code are dropped first so an image written *about*
+// markdown (`![alt](photo.jpg)` in a snippet) is not mistaken for a real one.
+function stripCode(body: string): string {
+  return body
+    .replace(/^```[\s\S]*?^```/gm, "")
+    .replace(/^~~~[\s\S]*?^~~~/gm, "")
+    .replace(/`[^`\n]*`/g, "");
+}
+
+// Matches ![[file.png]] or ![alt](file.png "title"), whichever comes first.
+const IMAGE_RE =
+  /!\[\[([^\]]+)\]\]|!\[[^\]]*\]\(\s*<?([^)>\s]+)>?(?:\s+["'][^)]*)?\s*\)/;
+
+function firstImage(body: string): string | undefined {
+  const match = IMAGE_RE.exec(stripCode(body));
+  const href = (match?.[1] ?? match?.[2] ?? "").trim();
+  if (!href) return undefined;
+  return resolveImagePath(href, SEMINAR_MEDIA_BASE);
+}
+
 function readEntry(filename: string): SeminarEntry | null {
   let raw: string;
   try {
@@ -73,6 +96,9 @@ function readEntry(filename: string): SeminarEntry | null {
     subtitle: meta.subtitle || meta.summary || undefined,
     draft: /^(true|yes|1)$/i.test(meta.draft ?? ""),
     content: body.trim(),
+    image: meta.image
+      ? resolveImagePath(meta.image, SEMINAR_MEDIA_BASE)
+      : firstImage(body),
   };
 }
 

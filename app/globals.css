@@ -154,10 +154,39 @@ h1 {
     color: var(--text-muted);
 }
 
-.seminar-intro {
-    color: var(--text-secondary);
-    font-size: 0.95em;
+/* Index entry: optional thumbnail (first image of the entry) beside the text */
+.seminar-entry {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9em;
     margin-bottom: 1.4em;
+}
+
+.seminar-entry-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.seminar-thumb {
+    flex: 0 0 auto;
+    display: block;
+    line-height: 0;
+}
+
+.seminar-thumb img {
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+    border: 1px solid var(--border-color);
+    border-radius: 3px;
+    background-color: var(--bg-secondary);
+}
+
+@media (max-width: 600px) {
+    .seminar-thumb img {
+        width: 52px;
+        height: 52px;
+    }
 }
 
 .blog-footer-note {

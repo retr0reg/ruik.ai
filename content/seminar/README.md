@@ -45,6 +45,12 @@ Both forms resolve to `/seminar-media/breadboard.jpg`. Absolute paths
 (`/whatever.png`) and full URLs still work as-is. The alt text becomes the
 caption, unless it is just a filename.
 
+The entry's **first** image doubles as its thumbnail on the `/seminar` index
+and as the link-preview image. Images written inside code blocks or backticks
+don't count. To use a different one, set `image:` in the frontmatter — it takes
+the same bare-filename / absolute-path / URL forms as above. An entry with no
+image just lists without a thumbnail.
+
 ## Visibility
 
 `/seminar` is not linked from anywhere else on the site and both pages send

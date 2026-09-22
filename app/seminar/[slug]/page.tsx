@@ -24,11 +24,14 @@ export async function generateMetadata({
   const entry = getSeminarEntry(slug);
 
   return {
+    metadataBase: new URL("https://ruik.ai"),
     title: entry
       ? `${entry.title} | Technology Seminar`
       : "Not Found | Ruikai Peng",
     // Unlisted: reachable by URL only, kept out of search engines.
     robots: { index: false, follow: false },
+    // Same first image as the index thumbnail, for link previews
+    openGraph: entry?.image ? { images: [entry.image] } : undefined,
   };
 }
 
