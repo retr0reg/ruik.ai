@@ -154,6 +154,12 @@ h1 {
     color: var(--text-muted);
 }
 
+.seminar-intro {
+    color: var(--text-secondary);
+    font-size: 0.95em;
+    margin-bottom: 1.4em;
+}
+
 .blog-footer-note {
     margin-top: 2.2em;
     text-align: center;

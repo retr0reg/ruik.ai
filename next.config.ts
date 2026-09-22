@@ -11,6 +11,11 @@ const r2Host = (() => {
 })();
 
 const nextConfig: NextConfig = {
+  // Seminar entries are read off disk; keep the markdown in the deployed bundle.
+  outputFileTracingIncludes: {
+    "/seminar": ["./content/seminar/**/*"],
+    "/seminar/[slug]": ["./content/seminar/**/*"],
+  },
   images: {
     remotePatterns: r2Host
       ? [{ protocol: "https", hostname: r2Host }]

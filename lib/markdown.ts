@@ -20,6 +20,16 @@ function isImageFilename(text: string): boolean {
   return /\.(png|jpe?g|gif|webp|svg)$/i.test(text.trim());
 }
 
+// Base folder that relative image paths resolve against. Set per parse() call;
+// marked runs synchronously so a module-level value is safe here.
+const DEFAULT_IMAGE_BASE = "/mds/";
+let imageBase = DEFAULT_IMAGE_BASE;
+
+function resolveImageSrc(href: string): string {
+  if (/^([a-z][a-z0-9+.-]*:|\/\/|\/|#)/i.test(href)) return href;
+  return imageBase + href.replace(/^\.\//, "");
+}
+
 marked.use({
   renderer: {
     code(token: Tokens.Code): string {
@@ -48,17 +58,29 @@ marked.use({
       const titleAttr = title ? ` title="${escapeHtml(title)}"` : "";
       const caption =
         text && !isImageFilename(text) ? `<figcaption>${escapeHtml(text)}</figcaption>` : "";
-      return `<figure class="writeup-figure"><img src="${href}" alt="${escapeHtml(text)}"${titleAttr} loading="lazy">${caption}</figure>`;
+      const src = escapeHtml(resolveImageSrc(href));
+      return `<figure class="writeup-figure"><img src="${src}" alt="${escapeHtml(text)}"${titleAttr} loading="lazy">${caption}</figure>`;
     },
   },
 });
 
-export function parseMarkdown(markdown: string): string {
+export interface MarkdownOptions {
+  // Folder relative image paths resolve against, e.g. "/seminar-media/"
+  imageBase?: string;
+}
+
+export function parseMarkdown(
+  markdown: string,
+  options: MarkdownOptions = {}
+): string {
+  imageBase = options.imageBase ?? DEFAULT_IMAGE_BASE;
+
   // Pre-process for Obsidian image syntax ![[filename]]
   let processed = markdown.replace(
     /!\[\[([^\]]+)\]\]/g,
     (_, filename: string) => {
-      return `<figure class="writeup-figure"><img src="/mds/${filename}" alt="${filename}" loading="lazy"></figure>`;
+      const src = escapeHtml(resolveImageSrc(filename.trim()));
+      return `<figure class="writeup-figure"><img src="${src}" alt="${escapeHtml(filename)}" loading="lazy"></figure>`;
     }
   );
 
