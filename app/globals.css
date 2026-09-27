@@ -154,38 +154,44 @@ h1 {
     color: var(--text-muted);
 }
 
-/* Index entry: optional thumbnail (first image of the entry) beside the text */
+/* Index entry: title/subtitle/date stay flush left, the entry's first image
+   sits under them at half column width — big enough to read, small enough to
+   keep the list scannable. Entries without an image just have no block. */
 .seminar-entry {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.9em;
-    margin-bottom: 1.4em;
-}
-
-.seminar-entry-text {
-    flex: 1;
-    min-width: 0;
+    margin-bottom: 2em;
 }
 
 .seminar-thumb {
-    flex: 0 0 auto;
     display: block;
+    width: 300px;
+    max-width: 100%;
+    margin-top: 0.6em;
     line-height: 0;
 }
 
 .seminar-thumb img {
-    width: 64px;
-    height: 64px;
+    width: 100%;
+    aspect-ratio: 3 / 2;
     object-fit: cover;
+    display: block;
     border: 1px solid var(--border-color);
     border-radius: 3px;
     background-color: var(--bg-secondary);
+    transition: opacity 0.15s ease;
+}
+
+.seminar-thumb:hover img {
+    opacity: 0.82;
+}
+
+/* Hovering the image reads as hovering the entry */
+.seminar-entry:has(.seminar-thumb:hover) .blog-title {
+    text-decoration: underline;
 }
 
 @media (max-width: 600px) {
-    .seminar-thumb img {
-        width: 52px;
-        height: 52px;
+    .seminar-thumb {
+        width: 100%;
     }
 }
 

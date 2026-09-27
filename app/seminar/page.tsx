@@ -19,6 +19,16 @@ export default function SeminarPage() {
       <div className="blog-list">
         {entries.map((entry) => (
           <article key={entry.slug} className="blog-entry seminar-entry">
+            <Link href={`/seminar/${entry.slug}`} className="blog-title">
+              {entry.title}
+            </Link>
+            {entry.subtitle && (
+              <span className="blog-subtitle">{entry.subtitle}</span>
+            )}
+            <span className="blog-meta">
+              {formatEntryDate(entry.date)}
+              {entry.draft && " · draft"}
+            </span>
             {entry.image && (
               <Link
                 href={`/seminar/${entry.slug}`}
@@ -32,18 +42,6 @@ export default function SeminarPage() {
                 <img src={entry.image} alt="" loading="lazy" />
               </Link>
             )}
-            <div className="seminar-entry-text">
-              <Link href={`/seminar/${entry.slug}`} className="blog-title">
-                {entry.title}
-              </Link>
-              {entry.subtitle && (
-                <span className="blog-subtitle">{entry.subtitle}</span>
-              )}
-              <span className="blog-meta">
-                {formatEntryDate(entry.date)}
-                {entry.draft && " · draft"}
-              </span>
-            </div>
           </article>
         ))}
         {entries.length === 0 && <p className="blog-empty">No entries yet.</p>}

@@ -27,7 +27,9 @@ function splitFrontmatter(raw: string): {
   meta: Record<string, string>;
   body: string;
 } {
-  const match = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?/.exec(raw);
+  // Leading blank lines before the opening fence are tolerated — editors leave
+  // them behind and the whole block would otherwise render as body text.
+  const match = /^\s*---[ \t]*\r?\n([\s\S]*?)\r?\n---[ \t]*(?:\r?\n|$)/.exec(raw);
   if (!match) return { meta: {}, body: raw };
 
   const meta: Record<string, string> = {};
@@ -81,7 +83,9 @@ function firstImage(body: string): string | undefined {
 function readEntry(filename: string): SeminarEntry | null {
   let raw: string;
   try {
-    raw = fs.readFileSync(path.join(SEMINAR_DIR, filename), "utf8");
+    raw = fs
+      .readFileSync(path.join(SEMINAR_DIR, filename), "utf8")
+      .replace(/^\uFEFF/, "");
   } catch {
     return null;
   }

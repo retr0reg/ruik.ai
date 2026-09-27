@@ -58,6 +58,7 @@ export default function Home() {
             {/* <div className="footnote">^^^ once yc hackernews top 3</div> */}
             <li><a href="https://retr0.blog/blog/evernote-rce">creating a one-click rce in <code>evernote</code></a></li>
             <li><a href="https://retr0.blog/blog/tenda-ac8-rop">rop&apos;ing a <code>tenda</code> router</a></li>
+            <li><a href="https://retr0.blog/blog/from-gguf-model-format-metadata-rce-to-state-of-the-art-nlp-project-rces">hacking <code>GGUFs</code></a></li>
             <li><a href="https://retr0.blog/blog">...</a></li>
           </ul>
           <li>US National Team, International Cybersecurity Olympiad (ICO)</li>
