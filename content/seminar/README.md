@@ -49,7 +49,8 @@ The entry's **first** image doubles as its thumbnail on the `/seminar` index
 and as the link-preview image. Images written inside code blocks or backticks
 don't count. To use a different one, set `image:` in the frontmatter — it takes
 the same bare-filename / absolute-path / URL forms as above. An entry with no
-image just lists without a thumbnail.
+image just lists without a thumbnail. To keep pictures in the post but show
+no thumbnail on the index, set `image: none`.
 
 ## Visibility
 

@@ -80,6 +80,14 @@ function firstImage(body: string): string | undefined {
   return resolveImagePath(href, SEMINAR_MEDIA_BASE);
 }
 
+// Frontmatter `image:` overrides the auto-pick; `image: none` (or false/no)
+// opts the entry out of a thumbnail while keeping its pictures in the body.
+function pickImage(override: string | undefined, body: string): string | undefined {
+  if (override === undefined) return firstImage(body);
+  if (/^(none|false|no|off|-)$/i.test(override) || override === "") return undefined;
+  return resolveImagePath(override, SEMINAR_MEDIA_BASE);
+}
+
 function readEntry(filename: string): SeminarEntry | null {
   let raw: string;
   try {
@@ -100,9 +108,7 @@ function readEntry(filename: string): SeminarEntry | null {
     subtitle: meta.subtitle || meta.summary || undefined,
     draft: /^(true|yes|1)$/i.test(meta.draft ?? ""),
     content: body.trim(),
-    image: meta.image
-      ? resolveImagePath(meta.image, SEMINAR_MEDIA_BASE)
-      : firstImage(body),
+    image: pickImage(meta.image, body),
   };
 }
 
