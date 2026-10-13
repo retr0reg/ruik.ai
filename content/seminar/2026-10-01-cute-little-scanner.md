@@ -1,7 +1,7 @@
 ---
-title: cute little 3D scanner
+title: cute little 3d scanner
 date: 2026-09-21
-subtitle: A quick journal on the quote minimum testable prototype.
+subtitle: a quick journal on the quote minimum testable prototype.
 image: none
 ---
 
