@@ -232,3 +232,8 @@ Target 0: (flappy) stopped.
 Process 27360 resuming
 (lldb)
 ```
+
+## Reflections
+
+A new goal I have for this app is I wish I can somehow go even deeper, and provide explaination of techniques we used here, other than the game itself, so audiences are able to carry out this on their own – *"it's better to teach them to fish rather giveing them fishes."*
+- I had this inspiration since I observed audiences' reaction when I introduced lldb etc.
