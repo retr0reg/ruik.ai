@@ -2,11 +2,7 @@
 title: Flappy with serial input
 date: 2026-10-30
 subtitle: Using USB serial as input for flappy bird.
-----
-
-- Your plan: what sensor and how/why you expect it to interface with your game
-- Your process: how you got the Arduino sending meaningful values & read them in Python
-- Your result; show us a demo of the final project
+---
 
 ## Planning
 
@@ -23,6 +19,10 @@ My plan is that I use an ultrasound sensory as the input for my flappy bird game
 - On teh Python side. The script opens the serial port with Python's standard os and termios modules, sets raw mode at 115200 baud, and reads whatever bytes are available without blocking. It splits them into lines and converts each to an integer, ignoring anything that isn't a number. - it later opens up a pseudo-terminal that writes a space when the detector fires, which changes the birds vertical velocity.
 
 The interesting part is turning noisy inputs into a clean button. A single threshold flickers when the hand sits right at the edge, so I used two. Below 12 cm counts as "in the zone" and fires one flap, then disarms. Above 18 cm re-arms. Between 12 and 18 nothing changes. i.e., one dip equals one flap no matter how long the hand hovers or how much the reading jitters.
+
+## Usage of AI
+
+I asked AI for guidence and hooking up between serial and keyboard input.
 
 ## Result
 
